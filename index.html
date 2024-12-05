@@ -1,23 +1,237 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 20px;
+      text-align: center;
+      background-image: linear-gradient(rgb(247, 238, 60), rgb(250, 178, 60));
+      min-width: 100%;
+      min-height: 100%;
+    }
+
+    #myBtn {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 30px;
+      z-index: 99;
+      font-size: 18px;
+      border: none;
+      outline: none;
+      background-color: yellow;
+      color: orange;
+      cursor: pointer;
+      padding: 15px;
+      border-radius: 4px;
+    }
+
+    #myBtn:hover {
+      background-color: #555;
+    }
+
+    .container {
+      position: relative;
+      max-width: 100%;
+    }
+
+    .mySlides {
+      display: none;
+    }
+
+    .prev, .next {
+      position: absolute;
+      top: 50%;
+      padding: 16px;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      background-color: rgba(0, 0, 0, 0.5);
+      border: none;
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .prev {
+      left: 0;
+    }
+
+    .next {
+      right: 0;
+    }
+
+    .caption-container {
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 10px;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      color: white;
+    }
+
+    .column {
+      float: left;
+      width: 16.66%;
+      padding: 10px;
+    }
+
+    .demo {
+      cursor: pointer;
+      opacity: 0.6;
+    }
+
+    .demo:hover {
+      opacity: 1;
+    }
+
+    .active {
+      opacity: 1;
+    }
+  </style>
 </head>
 
 <body>
-  text-align: center;
-         background-image: linear-gradient(rgb(13, 175, 177), rgb(222, 222, 222));
-         min-width: 100%;
-         min-height: 100%;
-<h1>Ducks!<h1>
-<h3>A duck's feathers are so waterproof that even when the duck dives underwater, the downy underlayer of feathers right next to the skin will stay completely dry. Ducks are omnivorous and will eat grass, aquatic plants, insects, seeds, fruit, fish, crustaceans and other types of food. Lets explore interresting facts about ducks<h3>
 
-<img scr="https://www.mypetchicken.com/cdn/shop/products/white-crested-duck5-mpc.jpg?v=1671498597&width=713">
-<h3>What are 5 interesting facts about duck?
-Take a minute to learn a few new facts about everyone's favorite pond-dweller.
-Duck quacks do echo! 
-Speaking of quacks: most male ducks don't!
-A group of ducks is called a paddling, a plump or even (if they're on the water) a raft! 
-Ducks can walk (and leap) just a few hours after hatching!<h3>
-<button>
-Extra facts
-</button>
+<h1>Ducks</h1>
+<h4>All you need to know about ducks!</h4>
 
+<h5>
+  These gifted swimmers have waterproof feathers, which have a waxy coating that protects an inner layer of down, to keep them warm and dry. They can swim in cold water without catching a chill because their feet have blood vessels that are close together so they don’t lose heat. Some duck species can dive up to 240 feet below the water, and others can fly as high as 21,000 feet in the air (although most migrate at heights of 200 to 4,000 feet). They can also fly long distances, and they use wind to help them reach speeds of up to 60 mph.
+</h5>
 
+<h3>Duck Species</h3>
+<h5>
+  There is a wide range of different species of duck, with species like the muscovy duck, mandarin duck, and red-breasted merganser making up the numbers.
+  The mallard is the most common species of duck and is generally considered, for want of a better term, to be the 'default' duck. When you imagine a duck, there's a good chance that the bird you see is a mallard.
+  Ducks are generally smaller and shorter-necked than species of swans and geese, though they all tend to inhabit similar bodies of water and belong to the same family.
+</h5>
 
+<img src="https://www.treehugger.com/thmb/8JsMhv9XP5xzgWEy1Xfdh9xWbaM=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/duckling-close-up-500315849-572917c93df78ced1f0b99ec.jpg" width="500">
+
+<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+
+<script>
+// Get the button
+let mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+
+// Slideshow functions
+let slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("demo");
+  if (n > slides.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = slides.length}
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  for (let i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+}
+</script>
+
+<h5>
+  The word duck comes from Old English dūce 'diver', a derivative of the verb *dūcan 'to duck, bend down low as if to get under something, or dive', because of the way many species in the dabbling duck group feed by upending; compare with Dutch duiken and German tauchen 'to dive'.
+  Ducks are also called 'waterfowl' because they are normally found in places where there is water like ponds, streams, and rivers. Ducks can live up to 20 years, depending on the species and if well cared for.
+</h5>
+
+<div class="container">
+  <div class="mySlides">
+    <div class="numbertext">1 / 6</div>
+    <img src="img_woods_wide.jpg" style="width:100%">
+  </div>
+
+  <div class="mySlides">
+    <div class="numbertext">2 / 6</div>
+    <img src="img_5terre_wide.jpg" style="width:100%">
+  </div>
+
+  <div class="mySlides">
+    <div class="numbertext">3 / 6</div>
+    <img src="img_mountains_wide.jpg" style="width:100%">
+  </div>
+
+  <div class="mySlides">
+    <div class="numbertext">4 / 6</div>
+    <img src="img_lights_wide.jpg" style="width:100%">
+  </div>
+
+  <div class="mySlides">
+    <div class="numbertext">5 / 6</div>
+    <img src="img_nature_wide.jpg" style="width:100%">
+  </div>
+
+  <div class="mySlides">
+    <div class="numbertext">6 / 6</div>
+    <img src="img_snow_wide.jpg" style="width:100%">
+  </div>
+
+  <!-- Next and previous buttons -->
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+  <!-- Image text -->
+  <div class="caption-container">
+    <p id="caption"></p>
+  </div>
+
+  <div class="row">
+    <div class="column">
+      <img class="demo cursor" src="img_woods.jpg" style="width:100%" onclick="currentSlide(1)" alt="The Woods">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="img_5terre.jpg" style="width:
+      <img class="demo cursor" src="img_5terre.jpg" style="width:100%" onclick="currentSlide(2)" alt="Cinque Terre">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="img_mountains.jpg" style="width:100%" onclick="currentSlide(3)" alt="Mountains and fjords">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="img_lights.jpg" style="width:100%" onclick="currentSlide(4)" alt="Northern Lights">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="img_nature.jpg" style="width:100%" onclick="currentSlide(5)" alt="Nature and sunrise">
+    </div>
+    <div class="column">
+      <img class="demo cursor" src="img_snow.jpg" style="width:100%" onclick="currentSlide(6)" alt="Snowy Mountains">
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
